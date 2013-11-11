@@ -1,0 +1,27 @@
+{
+    "name": "robbertkl/photo-library",
+    "description": "Simple library for reading iPhoto '11 .photolibrary packages",
+    "keywords": ["apple", "iphoto"],
+    "type": "library",
+    "homepage": "https://github.com/robbertkl/PhotoLibrary",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robbert Klarenbeek",
+            "email": "robbertkl@renbeek.nl"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/robbertkl/PhotoLibrary/issues",
+        "source": "https://github.com/robbertkl/PhotoLibrary"
+    },
+    "require": {
+        "php": ">=5.3",
+        "rodneyrehm/plist": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "PhotoLibrary\\": "classes/"
+        }
+    }
+}

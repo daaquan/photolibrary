@@ -1,6 +1,6 @@
 # PhotoLibrary
 
-Simple library for reading iPhoto '11 .photolibrary packages.
+Simple [Composer](http://getcomposer.org) library for reading iPhoto '11 .photolibrary packages.
 
 PhotoLibrary tries to be [PSR-0](http://www.php-fig.org/psr/psr-0/), [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) compliant.
 Please let me know if it's lacking anywhere. Make sure pull requests are compliant as well.
@@ -11,6 +11,20 @@ Please let me know if it's lacking anywhere. Make sure pull requests are complia
 
 * At least PHP 5.3 (namespaces)
 * The [CFPropertyList](https://raw.github.com/rodneyrehm/CFPropertyList) library
+
+These requirements are taken care of when installing through [Composer](http://getcomposer.org) / [Packagist](https://packagist.org/packages/robbertkl/photo-library).
+
+## Installation
+
+Either add this to you `composer.json` file:
+
+```json
+"require": {
+    "robbertkl/iphoto-library": "master-dev"
+}
+```
+
+or manually include the appriate files from the `classes/` dir.
 
 ## Known Limitations
 
