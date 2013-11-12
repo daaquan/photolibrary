@@ -39,8 +39,8 @@ class Library
      */
     public function __construct($path)
     {
-        $path = rtrim($path, '/');
-        $plist = $path . '/AlbumData.xml';
+        $path = rtrim($path, DIRECTORY_SEPARATOR);
+        $plist = $path . DIRECTORY_SEPARATOR . 'AlbumData.xml';
         
         if (!is_dir($path) || !file_exists($plist)) {
             throw new \InvalidArgumentException('Given path does not seem to be an iPhoto library package');
