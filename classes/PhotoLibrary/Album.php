@@ -98,6 +98,19 @@ class Album
     }
 
     /**
+     * Get a photo from this album by its key
+     * @param int $key key of the photo to get
+     * @return Photo photo with the given key, or null iff not found
+     */
+    public function getPhoto($key)
+    {
+        if (!in_array($key, $this->data['KeyList'])) {
+            return null;
+        }
+        return $this->library->getPhoto($key);
+    }
+
+    /**
      * Get the string representation of this album
      * @return string string representation of this album (just it's name)
      */
