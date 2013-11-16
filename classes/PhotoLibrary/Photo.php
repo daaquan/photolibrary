@@ -19,19 +19,19 @@ class Photo
      * Link back to the library to which this photo belongs
      * @var Library
      */
-    protected $library = null;
+    protected $library;
 
     /**
      * Key of the photo (a unique identifier within the AlbumData.xml plist)
      * @var int
      */
-    protected $key = null;
+    protected $key;
 
     /**
      * Associative array with raw photo properties
      * @var array
      */
-    protected $data = null;
+    protected $data;
 
     /**
      * Create new Photo by supplying the raw properties

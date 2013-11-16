@@ -19,13 +19,13 @@ class Album
      * Link back to the library to which this album belongs
      * @var Library
      */
-    protected $library = null;
+    protected $library;
 
     /**
      * Associative array with raw album properties
      * @var array
      */
-    protected $data = null;
+    protected $data;
 
     /**
      * Create new Album by supplying the raw properties
