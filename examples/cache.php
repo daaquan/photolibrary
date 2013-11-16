@@ -14,7 +14,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Try APC and {Filesystem + Serializer}, just as an example
-if (extension_loaded('apc') && get_cfg_var('apc.enabled') && class_exists('\Zend\Cache\Storage\Adapter\Apc')) {
+if (extension_loaded('apc') && ini_get('apc.enabled') && (PHP_SAPI != 'cli' || ini_get('apc.enable_cli')) && class_exists('\Zend\Cache\Storage\Adapter\Apc')) {
     $cache = new \Zend\Cache\Storage\Adapter\Apc();
 } elseif (class_exists('\Zend\Cache\Storage\Adapter\Filesystem') && class_exists('\Zend\Cache\Storage\Plugin\Serializer')) {
     $cache = new \Zend\Cache\Storage\Adapter\Filesystem();
