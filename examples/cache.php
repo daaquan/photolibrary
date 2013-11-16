@@ -29,6 +29,7 @@ if (!isset($cache)) {
     exit(1);
 }
 
+$cache->getOptions()->setNamespace('photolibrary');
 \PhotoLibrary\Library::setCache($cache);
 
 if (!\PhotoLibrary\Library::isUsingCache()) {
