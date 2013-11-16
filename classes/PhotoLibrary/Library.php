@@ -210,6 +210,15 @@ class Library
     }
 
     /**
+     * Get the number of albums in this library
+     * @return int number of albums in this library
+     */
+    public function getAlbumCount()
+    {
+        return count($this->data['List of Albums']);
+    }
+
+    /**
      * Get all albums in this library
      * @return Album[] list of Album objects
      */
