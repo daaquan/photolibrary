@@ -1,5 +1,5 @@
 {
-    "name": "robbertkl/photo-library",
+    "name": "robbertkl/photolibrary",
     "description": "Simple library for reading iPhoto '11 .photolibrary packages",
     "keywords": ["apple", "iphoto"],
     "type": "library",

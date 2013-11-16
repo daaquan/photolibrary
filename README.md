@@ -14,7 +14,7 @@ Please let me know if it's lacking anywhere. Make sure pull requests are complia
 * At least PHP 5.3 (namespaces)
 * The [CFPropertyList](https://raw.github.com/rodneyrehm/CFPropertyList) library
 
-These requirements are taken care of when installing through [Composer](http://getcomposer.org) / [Packagist](https://packagist.org/packages/robbertkl/photo-library).
+These requirements are taken care of when installing through [Composer](http://getcomposer.org) / [Packagist](https://packagist.org/packages/robbertkl/photolibrary).
 
 ## Installation
 
@@ -22,7 +22,7 @@ Either add this to you `composer.json` file:
 
 ```json
 "require": {
-    "robbertkl/iphoto-library": "master-dev"
+    "robbertkl/photolibrary": "master-dev"
 }
 ```
 
