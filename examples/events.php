@@ -9,11 +9,8 @@
  * @package photolibrary
  */
 
-error_reporting(-1);
-ini_set('display_errors', 'on');
-
 // Change this if you're not using Composer
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Default to OS X default iPhoto library
 $libraryPath = ($argc >= 2) ? $argv[1] : $_SERVER['HOME'] . '/Pictures/iPhoto Library.photolibrary';

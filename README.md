@@ -2,6 +2,8 @@
 
 Simple [Composer](http://getcomposer.org) library for reading iPhoto '11 .photolibrary packages.
 
+Since v0.2.0, it includes caching capabilities (using Zend\Cache) for relatively large photo libraries.
+
 PhotoLibrary tries to be [PSR-0](http://www.php-fig.org/psr/psr-0/), [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) compliant.
 Please let me know if it's lacking anywhere. Make sure pull requests are compliant as well.
 
