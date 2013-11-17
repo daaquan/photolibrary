@@ -17,7 +17,7 @@
     },
     "require": {
         "php": ">=5.3",
-        "rodneyrehm/plist": "dev-master"
+        "rodneyrehm/plist": "~2.0"
     },
     "suggest": {
         "zendframework/zend-cache": "Required to enable caching, which is recommended for large photo libraries",
