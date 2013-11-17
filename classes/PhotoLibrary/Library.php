@@ -4,14 +4,12 @@
  *
  * @author Robbert Klarenbeek <robbertkl@renbeek.nl>
  * @copyright Copyright (c) 2013, Robbert Klarenbeek
- * @package photolibrary
  */
 
 namespace PhotoLibrary;
 
 /**
  * Main class for accessing an iPhoto .photolibrary package
- * @package photolibrary
  */
 class Library
 {

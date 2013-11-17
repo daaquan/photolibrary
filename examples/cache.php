@@ -7,7 +7,6 @@
  *
  * @author Robbert Klarenbeek <robbertkl@renbeek.nl>
  * @copyright Copyright (c) 2013, Robbert Klarenbeek
- * @package photolibrary
  */
 
 // Change this if you're not using Composer
