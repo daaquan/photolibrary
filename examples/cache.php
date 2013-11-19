@@ -6,7 +6,8 @@
  * Usage: see examples/events.php
  *
  * @author Robbert Klarenbeek <robbertkl@renbeek.nl>
- * @copyright Copyright (c) 2013, Robbert Klarenbeek
+ * @copyright 2013 Robbert Klarenbeek
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 // Change this if you're not using Composer

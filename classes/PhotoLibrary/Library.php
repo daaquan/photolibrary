@@ -1,44 +1,46 @@
 <?php
-/**
- * File containing the \PhotoLibrary\Library class
- *
- * @author Robbert Klarenbeek <robbertkl@renbeek.nl>
- * @copyright Copyright (c) 2013, Robbert Klarenbeek
- */
-
 namespace PhotoLibrary;
 
 /**
  * Main class for accessing an iPhoto .photolibrary package
+ *
+ * @author Robbert Klarenbeek <robbertkl@renbeek.nl>
+ * @copyright 2013 Robbert Klarenbeek
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class Library
 {
     /**
      * Path to the library on this filesystem
+     *
      * @var string
      */
     protected $path;
 
     /**
      * The plist data from AlbumData.xml as array
+     *
      * @var array
      */
     protected $data;
 
     /**
      * Associative array (int => Album) of cached Album objects by ID
+     *
      * @var array
      */
     protected $albums = null;
 
     /**
      * Zend Cache Storage Adapter to use for caching the plist data from AlbumData.xml
+     *
      * @var \Zend\Cache\Storage\StorageInterface
      */
     protected static $cache = null;
 
     /**
      * Set a Zend Cache storage adapter to use for caching the plist data from AlbumData.xml
+     *
      * @param \Zend\Cache\Storage\StorageInterface $cache storage adapter which supports at least 'array' datatype and 'mtime' metadata
      */
     public static function setCache(\Zend\Cache\Storage\StorageInterface $cache)
@@ -49,6 +51,7 @@ class Library
 
     /**
      * Check whether a cache will be used or not (e.g. if no cache has been set or if its capabilities are insufficient)
+     *
      * @return boolean true iff a cache will be used, i.e. if a cache with the right capabilities has been set
      */
     public static function isUsingCache()
@@ -63,6 +66,7 @@ class Library
 
     /**
      * Validates whether we have a cache and whether it has the right capabilities
+     *
      * @throws \Exception if no cache has been set or its capabilities meet the requirements
      */
     protected static function validateCache()
@@ -84,6 +88,7 @@ class Library
 
     /**
      * Load an entry belonging to the given key from our cache (if any)
+     *
      * @param string $key key to look for in the cache (should match /^[a-z0-9_+-]*$/Di)
      * @param int $mtime unix timestamp to compare the cache entry with (the entry will be ignored if older than $mtime)
      * @return mixed entry from cache or false if its key isn't found in cache or the entry is too old
@@ -112,6 +117,7 @@ class Library
 
     /**
      * Store an entry in our cache (if any)
+     *
      * @param string $key key used to store the entry in the cache (should match /^[a-z0-9_+-]*$/Di)
      * @param mixed $value entry to store in the cache
      */
@@ -130,6 +136,7 @@ class Library
 
     /**
      * Fakes an exception in the cache, so that the cache's own EventManager decides what to do with it (throw or continue without cache)
+     *
      * @param string $eventName name of faked storage adapter method (e.g. getItem or setItem)
      * @param array $args arguments for the faked method call to the storage adapter
      * @param mixed $result return value of the faked method call in case the exception will not be (re)thrown
@@ -164,6 +171,7 @@ class Library
 
     /**
      * Create new Library from a path
+     *
      * @param string $path path to the .photolibrary directory (with or without trailing /)
      */
     public function __construct($path)
@@ -209,6 +217,7 @@ class Library
 
     /**
      * Get the number of albums in this library
+     *
      * @return int number of albums in this library
      */
     public function getAlbumCount()
@@ -218,6 +227,7 @@ class Library
 
     /**
      * Get all albums in this library
+     *
      * @return Album[] list of Album objects
      */
     public function getAlbums()
@@ -228,6 +238,7 @@ class Library
 
     /**
      * Get all albums of a specific "Album Type"
+     *
      * @param string $type album type to look for, e.g. "Flagged", "Regular", "Event"
      * @return Album[] list of Album objects
      */
@@ -245,6 +256,7 @@ class Library
 
     /**
      * Get an album by its "Album ID"
+     *
      * @param int $id Album ID of the album to get
      * @return Album album with the given ID, or null iff not found
      */
@@ -259,6 +271,7 @@ class Library
 
     /**
      * Get a photo by its key
+     *
      * @param int $key key of the photo to get
      * @return Photo photo with the given key, or null iff not found
      */
@@ -272,6 +285,7 @@ class Library
 
     /**
      * Rewrite an internal photolibrary path (called the "Archive Path" to the real one on disk
+     *
      * @param string $path path to a file from the AlbumData.xml plist
      * @return string rewritten path to the real file (of the current .photolibrary)
      */
