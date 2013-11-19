@@ -1,13 +1,15 @@
-# Operating System garbage
+# General garbage
 .DS_Store
 Thumbs.db
+*.bak
+*.sql
 
-# IDE project files
-/.build/
+# IDE project files/dirs
+/.build
 /.buildpath
-/.idea/
+/.idea
 /.project
-/.settings/
+/.settings
 
 # Composer
 /composer.lock
