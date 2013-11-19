@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class PhotoLibrary\Photo | PhotoLibrary API</title>
+
+	<script type="text/javascript" src="resources/combined.js?722237956"></script>
+	<script type="text/javascript" src="elementlist.js?1295040318"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822" />
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609" />
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">PhotoLibrary API</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-PhotoLibrary.html" title="Summary of PhotoLibrary"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+						</li>
+						<li>
+							<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+						</li>
+						<li>
+							<a href="todo.html" title="Todo list"><span>Todo</span></a>
+						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="photolibrary-api-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="" />
+			<input type="hidden" name="ie" value="UTF-8" />
+			<input type="text" name="q" class="search-query" placeholder="Search" />
+		</form>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-PhotoLibrary.html">PhotoLibrary</a>
+						</li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-PhotoLibrary.Album.html">Album</a></li>
+				<li><a href="class-PhotoLibrary.Library.html">Library</a></li>
+				<li class="active"><a href="class-PhotoLibrary.Photo.html">Photo</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class Photo</h1>
+
+
+	<div class="description">
+	
+<p>Class representing a photo within the iPhoto .photolibrary package</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-PhotoLibrary.html">PhotoLibrary</a><br />
+		
+
+				<b>Copyright:</b>
+				2013 Robbert Klarenbeek<br />
+				<b>License:</b>
+				<a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a><br />
+				<b>Author:</b>
+				Robbert Klarenbeek &lt;<a
+href="mailto:robbertkl&#64;renbeek.nl">robbertkl&#64;<!-- -->renbeek.nl</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-PhotoLibrary.Photo.html#4-98" title="Go to source code">PhotoLibrary/Photo.php</a><br />
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped" id="methods">
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-PhotoLibrary.Photo.html#34-47" title="Go to source code">__construct</a>( <span><code><a href="class-PhotoLibrary.Library.html">PhotoLibrary\Library</a></code> <var>$library</var></span>, <span>integer <var>$key</var></span>, <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Create new Photo by supplying the raw properties</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Create new Photo by supplying the raw properties</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$library</var></dt>
+						<dd><code><code><a href="class-PhotoLibrary.Library.html">PhotoLibrary\Library</a></code></code><br>$library library to which this photo belongs</dd>
+						<dt><var>$key</var></dt>
+						<dd><code>integer</code><br>$key key of the photo (identifier from the AlbumData.xml plist)</dd>
+						<dt><var>$data</var></dt>
+						<dd><code>array</code><br>$data assiciative array with raw photo properties</dd>
+					</dl></div>
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><code><a href="class-PhotoLibrary.Library.html#_getPhoto">PhotoLibrary\Library::getPhoto()</a></code></code><br />
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getKey" id="_getKey">
+
+			<td class="attributes"><code>
+				 public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getKey">#</a>
+			<code><a href="source-class-PhotoLibrary.Photo.html#49-57" title="Go to source code">getKey</a>( )</code>
+
+			<div class="description short">
+				
+<p>Get the key of this photo (a unique identifier within the AlbumData.xml
+plist)</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the key of this photo (a unique identifier within the AlbumData.xml
+plist)</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>integer</code><br>key of this photo<br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getCaption" id="_getCaption">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCaption">#</a>
+			<code><a href="source-class-PhotoLibrary.Photo.html#59-67" title="Go to source code">getCaption</a>( )</code>
+
+			<div class="description short">
+				
+<p>Get the caption of this photo (usually the original filename)</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the caption of this photo (usually the original filename)</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>caption of this photo<br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getPath" id="_getPath">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getPath">#</a>
+			<code><a href="source-class-PhotoLibrary.Photo.html#69-77" title="Go to source code">getPath</a>( )</code>
+
+			<div class="description short">
+				
+<p>Get the path to the (original) image file on disk</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the path to the (original) image file on disk</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>path to the image file<br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getThumbnailPath" id="_getThumbnailPath">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getThumbnailPath">#</a>
+			<code><a href="source-class-PhotoLibrary.Photo.html#79-87" title="Go to source code">getThumbnailPath</a>( )</code>
+
+			<div class="description short">
+				
+<p>Get the path to the iPhoto-generated thumbnail file on disk</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the path to the iPhoto-generated thumbnail file on disk</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>path to the thumbnail file<br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code><a href="source-class-PhotoLibrary.Photo.html#89-97" title="Go to source code">__toString</a>( )</code>
+
+			<div class="description short">
+				
+<p>Get the string representation of this photo</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the string representation of this photo</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>string representation of this photo (just it's caption)<br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		PhotoLibrary API API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</body>
+</html>
