@@ -2,7 +2,7 @@
     "name": "robbertkl/photolibrary",
     "description": "Simple library for reading iPhoto '11 .photolibrary packages",
     "keywords": ["apple", "iphoto"],
-    "homepage": "https://github.com/robbertkl/PhotoLibrary",
+    "homepage": "https://github.com/robbertkl/photolibrary",
     "license": "MIT",
     "authors": [
         {
@@ -11,8 +11,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/robbertkl/PhotoLibrary/issues",
-        "source": "https://github.com/robbertkl/PhotoLibrary"
+        "issues": "https://github.com/robbertkl/photolibrary/issues",
+        "source": "https://github.com/robbertkl/photolibrary"
     },
     "autoload": {
         "psr-0": {
