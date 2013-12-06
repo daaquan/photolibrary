@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/robbertkl/photolibrary/v/stable.png)](https://packagist.org/packages/robbertkl/photolibrary)
 
 PHP library for reading iPhoto '11 .photolibrary packages.
-Since v0.2.0, it includes caching capabilities (using Zend\Cache) for relatively large photo libraries.
+Since v1.1.0, it includes caching capabilities (using Zend\Cache) for relatively large photo libraries.
 
 PhotoLibrary is [PSR-0](http://www.php-fig.org/psr/psr-0/), [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) compliant.
 
@@ -20,7 +20,7 @@ The easiest way to install is using [Composer](http://getcomposer.org) / [Packag
 
 ```json
 "require": {
-    "robbertkl/photolibrary": "master-dev"
+    "robbertkl/photolibrary": "1.*"
 }
 ```
 
@@ -44,4 +44,4 @@ Also, check out the [API documentation](http://robbertkl.github.io/photolibrary/
 
 ## License
 
-PhotoLibrary is published under the [MIT License](http://www.opensource.org/licenses/mit-license.php), which is included in `LICENSE`.
+PhotoLibrary is published under the [MIT License](http://www.opensource.org/licenses/mit-license.php).

@@ -26,7 +26,8 @@
     "require-dev": {
         "zendframework/zend-cache": "~2.0",
         "zendframework/zend-serializer": "~2.0",
-        "apigen/apigen": "2.*"
+        "apigen/apigen": "2.*",
+        "squizlabs/php_codesniffer": "1.*"
     },
     "suggest": {
         "zendframework/zend-cache": "~2.0, required to enable caching, which is recommended for large photo libraries",
