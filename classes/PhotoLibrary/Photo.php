@@ -110,4 +110,21 @@ class Photo
 
          return date( $format, $IPHOTO_EPOCH + intval( $this->data['DateAsTimerInterval'] ) );
      }
+
+    /**
+     * Get the faces in the photo, along with their locations and sizes.
+     *
+     * @return array An array of Faces
+     */
+    public function getFaces() {
+        $faces = array();
+
+        if ( ! empty( $this->data['Faces'] ) ) {
+            foreach ( $this->data['Faces'] as $face_entry ) {
+                $faces[] = new Face( $this->library, $face_entry['face key'], $face_entry['rectangle'] );
+            }
+        }
+
+        return $faces;
+    }
 }
