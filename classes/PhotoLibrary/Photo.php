@@ -95,4 +95,19 @@ class Photo
     {
         return $this->getCaption();
     }
+
+    /**
+     * Get the date of the photo.
+     *
+     * @param string $format The date formatting string.
+     * @return string The photo date.
+     */
+     public function getDate( $format = "Y-m-d H:i:s" )
+     {
+         // iPhoto stores timestamps as offsets from 2001-01-01 00:00:00.
+         // gmmktime( 0, 0, 0, 1, 1, 2001 ) = 978307200
+         $IPHOTO_EPOCH = 978307200;
+
+         return date( $format, $IPHOTO_EPOCH + intval( $this->data['DateAsTimerInterval'] ) );
+     }
 }
