@@ -116,12 +116,13 @@ class Photo
      *
      * @return array An array of Faces
      */
-    public function getFaces() {
+    public function getFaces()
+    {
         $faces = array();
 
-        if ( ! empty( $this->data['Faces'] ) ) {
-            foreach ( $this->data['Faces'] as $face_entry ) {
-                $faces[] = new Face( $this->library, $face_entry['face key'], $face_entry['rectangle'] );
+        if (!empty($this->data['Faces'])) {
+            foreach ($this->data['Faces'] as $faceEntry) {
+                $faces[] = new Face($this->library, $faceEntry['face key'], $faceEntry['rectangle']);
             }
         }
 

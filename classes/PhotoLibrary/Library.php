@@ -43,7 +43,7 @@ class Library
      *
      * @var PDO
      */
-    protected $face_db = null;
+    protected $faceDb = null;
 
     /**
      * Set a Zend Cache storage adapter to use for caching the plist data from AlbumData.xml
@@ -309,18 +309,18 @@ class Library
      * @param int $face_key
      * @return string The face name.
      */
-    public function getFaceName( $face_key )
+    public function getFaceName($faceKey)
     {
-        if ( is_null( $this->face_db ) ) {
+        if (is_null($this->faceDb)) {
             try {
-                $this->face_db = new \PDO( 'sqlite:' . $this->path . DIRECTORY_SEPARATOR . "Database" . DIRECTORY_SEPARATOR . "Faces.db" );
-            } catch ( Exception $e ){
+                $this->faceDb = new \PDO('sqlite:' . $this->path . DIRECTORY_SEPARATOR . 'Database' . DIRECTORY_SEPARATOR . 'Faces.db');
+            } catch (Exception $e){
                 return '';
             }
         }
 
-        $statement = $this->face_db->prepare( "SELECT name FROM RKFaceName WHERE faceKey = ?" );
-        $statement->execute( array( $face_key ) );
+        $statement = $this->faceDb->prepare('SELECT name FROM RKFaceName WHERE faceKey = ?');
+        $statement->execute(array($faceKey));
         return $statement->fetchColumn();
     }
 }
