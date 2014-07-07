@@ -67,6 +67,16 @@ class Photo
     }
 
     /**
+     * Get the description of this photo
+     *
+     * @return string description of this photo
+     */
+    public function getDescription()
+    {
+        return $this->data['Comment'];
+    }
+
+    /**
      * Get the path to the (original) image file on disk
      *
      * @return string path to the image file
