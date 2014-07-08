@@ -39,6 +39,13 @@ class Library
     protected static $cache = null;
 
     /**
+     * Connection to Faces.db.
+     *
+     * @var PDO
+     */
+    protected $faceDb = null;
+
+    /**
      * Set a Zend Cache storage adapter to use for caching the plist data from AlbumData.xml
      *
      * @param \Zend\Cache\Storage\StorageInterface $cache storage adapter which supports at least 'array' datatype and 'mtime' metadata
@@ -294,5 +301,37 @@ class Library
         $archivePath = dirname($this->data['Archive Path']);
         $realPath = dirname($this->path);
         return preg_replace('/^' . preg_quote($archivePath, '/') . '/', $realPath, $path);
+    }
+
+    /**
+     * Look up the name of a Face based on the face key.
+     *
+     * @param int $face_key
+     * @return string The face name.
+     */
+    public function getFaceName($faceKey)
+    {
+        if (is_null($this->faceDb)) {
+            $possibleFaceDbLocations = array('Database' . DIRECTORY_SEPARATOR . 'apdb' . DIRECTORY_SEPARATOR . 'Faces.db', 'Database' . DIRECTORY_SEPARATOR . 'Faces.db' );
+
+            foreach ($possibleFaceDbLocations as $faceDbPath) {
+                try {
+                    $this->faceDb = new \PDO('sqlite:' . $this->path . DIRECTORY_SEPARATOR . $faceDbPath);
+                } catch (Exception $e) {
+                }
+
+                if ($this->faceDb) {
+                    break;
+                }
+            }
+        }
+
+        if (!$this->faceDb) {
+            return '';
+        }
+
+        $statement = $this->faceDb->prepare('SELECT name FROM RKFaceName WHERE faceKey = ?');
+        $statement->execute(array($faceKey));
+        return $statement->fetchColumn();
     }
 }

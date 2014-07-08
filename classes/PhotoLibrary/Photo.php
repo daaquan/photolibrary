@@ -67,6 +67,16 @@ class Photo
     }
 
     /**
+     * Get the description of this photo
+     *
+     * @return string description of this photo
+     */
+    public function getDescription()
+    {
+        return $this->data['Comment'];
+    }
+
+    /**
      * Get the path to the (original) image file on disk
      *
      * @return string path to the image file
@@ -94,5 +104,38 @@ class Photo
     public function __toString()
     {
         return $this->getCaption();
+    }
+
+    /**
+     * Get the date of the photo.
+     *
+     * @param string $format The date formatting string.
+     * @return string The photo date.
+     */
+    public function getDateTime($format = "Y-m-d H:i:s")
+    {
+        // iPhoto stores timestamps as offsets from 2001-01-01 00:00:00.
+        // gmmktime( 0, 0, 0, 1, 1, 2001 ) = 978307200
+        $IPHOTO_EPOCH = 978307200;
+
+        return new \DateTime('@' . ($IPHOTO_EPOCH + intval($this->data['DateAsTimerInterval'])));
+    }
+
+    /**
+     * Get the faces in the photo, along with their locations and sizes.
+     *
+     * @return array An array of Faces
+     */
+    public function getFaces()
+    {
+        $faces = array();
+
+        if (!empty($this->data['Faces'])) {
+            foreach ($this->data['Faces'] as $faceEntry) {
+                $faces[] = new Face($this->library, $faceEntry['face key'], $faceEntry['rectangle']);
+            }
+        }
+
+        return $faces;
     }
 }
