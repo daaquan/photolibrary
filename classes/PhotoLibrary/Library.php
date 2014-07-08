@@ -312,11 +312,22 @@ class Library
     public function getFaceName($faceKey)
     {
         if (is_null($this->faceDb)) {
-            try {
-                $this->faceDb = new \PDO('sqlite:' . $this->path . DIRECTORY_SEPARATOR . 'Database' . DIRECTORY_SEPARATOR . 'Faces.db');
-            } catch (Exception $e){
-                return '';
+            $possibleFaceDbLocations = array('Database' . DIRECTORY_SEPARATOR . 'apdb' . DIRECTORY_SEPARATOR . 'Faces.db', 'Database' . DIRECTORY_SEPARATOR .
+
+            foreach ($possibleFaceDbLocations as $faceDbPath) {
+                try {
+                    $this->faceDb = new \PDO('sqlite:' . $this->path . DIRECTORY_SEPARATOR . $faceDbPath);
+                } catch (Exception $e) {
+                }
+
+                if ($this->faceDb) {
+                    break;
+                }
             }
+        }
+
+        if (!$this->faceDb) {
+            return '';
         }
 
         $statement = $this->faceDb->prepare('SELECT name FROM RKFaceName WHERE faceKey = ?');
