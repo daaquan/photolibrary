@@ -41,6 +41,7 @@ Also, check out the [API documentation](http://robbertkl.github.io/photolibrary/
 ## Authors
 
 * Robbert Klarenbeek, <robbertkl@renbeek.nl>
+* Christopher Finke, <chris@efinke.com>
 
 ## License
 

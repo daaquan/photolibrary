@@ -4,6 +4,8 @@ namespace PhotoLibrary;
 /**
  * Class representing a face within an iPhoto photo
  *
+ * @author Christopher Finke <chris@efinke.com>
+ * @copyright 2014 Robbert Klarenbeek
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class Face
