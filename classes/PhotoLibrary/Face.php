@@ -1,4 +1,5 @@
 <?php
+
 namespace PhotoLibrary;
 
 /**
@@ -10,6 +11,7 @@ namespace PhotoLibrary;
  */
 class Face
 {
+
     /**
      * Link back to the library to which this face's photo belongs
      *
@@ -43,14 +45,14 @@ class Face
      * @param int $face_key The key of the face in Faces.db.
      * @param string $rectange iPhoto's string representation of the face coordinates.
      */
-    public function __construct(Library $library, $faceKey, $rectangle)
+    public function __construct( Library $library, $faceKey, $rectangle )
     {
         $this->library = $library;
 
         $this->key = (int) $faceKey;
 
-        preg_match("/^\{\{([0-9\.]+), ([0-9\.]+)\}, \{([0-9\.]+), ([0-9\.]+)\}\}$/", $rectangle, $rectangleCoords);
-        $this->coordinates = array_slice($rectangleCoords, 1);
+        preg_match( "/^\{\{([0-9\.]+), ([0-9\.]+)\}, \{([0-9\.]+), ([0-9\.]+)\}\}$/", $rectangle, $rectangleCoords );
+        $this->coordinates = array_slice( $rectangleCoords, 1 );
     }
 
     /**
@@ -80,10 +82,11 @@ class Face
      */
     public function getName()
     {
-        if (is_null($this->name)) {
-            $this->name = $this->library->getFaceName($this->key);
+        if ( is_null( $this->name ) ) {
+            $this->name = $this->library->getFaceName( $this->key );
         }
 
         return $this->name;
     }
+
 }

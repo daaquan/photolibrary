@@ -1,4 +1,5 @@
 <?php
+
 namespace PhotoLibrary;
 
 /**
@@ -10,6 +11,7 @@ namespace PhotoLibrary;
  */
 class Album
 {
+
     /**
      * Link back to the library to which this album belongs
      *
@@ -31,7 +33,7 @@ class Album
      * @param array $data associative array with raw album properties
      * @see Library::ensureAlbums()
      */
-    public function __construct(Library $library, $data)
+    public function __construct( Library $library, $data )
     {
         $this->library = $library;
         $this->data = $data;
@@ -44,7 +46,7 @@ class Album
      */
     public function getId()
     {
-        return intval($this->data['AlbumId']);
+        return intval( $this->data['AlbumId'] );
     }
 
     /**
@@ -74,7 +76,7 @@ class Album
      */
     public function getKeyPhoto()
     {
-        return $this->library->getPhoto($this->data['KeyPhotoKey']);
+        return $this->library->getPhoto( $this->data['KeyPhotoKey'] );
     }
 
     /**
@@ -84,7 +86,7 @@ class Album
      */
     public function getPhotoCount()
     {
-        return intval($this->data['PhotoCount']);
+        return intval( $this->data['PhotoCount'] );
     }
 
     /**
@@ -95,8 +97,8 @@ class Album
     public function getPhotos()
     {
         $photos = array();
-        foreach ($this->data['KeyList'] as $key) {
-            $photos[$key] = $this->library->getPhoto($key);
+        foreach ( $this->data['KeyList'] as $key ) {
+            $photos[$key] = $this->library->getPhoto( $key );
         }
         return $photos;
     }
@@ -107,12 +109,12 @@ class Album
      * @param int $key key of the photo to get
      * @return Photo photo with the given key, or null iff not found
      */
-    public function getPhoto($key)
+    public function getPhoto( $key )
     {
-        if (!in_array($key, $this->data['KeyList'])) {
+        if ( !in_array( $key, $this->data['KeyList'] ) ) {
             return null;
         }
-        return $this->library->getPhoto($key);
+        return $this->library->getPhoto( $key );
     }
 
     /**
@@ -124,4 +126,5 @@ class Album
     {
         return $this->getName();
     }
+
 }

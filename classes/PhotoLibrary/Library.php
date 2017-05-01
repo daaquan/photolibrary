@@ -1,4 +1,5 @@
 <?php
+
 namespace PhotoLibrary;
 
 /**
@@ -10,6 +11,7 @@ namespace PhotoLibrary;
  */
 class Library
 {
+
     /**
      * Path to the library on this filesystem
      *
@@ -50,7 +52,7 @@ class Library
      *
      * @param \Zend\Cache\Storage\StorageInterface $cache storage adapter which supports at least 'array' datatype and 'mtime' metadata
      */
-    public static function setCache(\Zend\Cache\Storage\StorageInterface $cache)
+    public static function setCache( \Zend\Cache\Storage\StorageInterface $cache )
     {
         // We will delay checking the Storage adapter capabilities until its first use
         self::$cache = $cache;
@@ -65,7 +67,7 @@ class Library
     {
         try {
             self::validateCache();
-        } catch (\Exception $exception) {
+        } catch ( \Exception $exception ) {
             return false;
         }
         return true;
@@ -78,18 +80,18 @@ class Library
      */
     protected static function validateCache()
     {
-        if (is_null(self::$cache)) {
-            throw new \RuntimeException('No cache storage has been set');
+        if ( is_null( self::$cache ) ) {
+            throw new \RuntimeException( 'No cache storage has been set' );
         }
 
         $supportedDataTypes = self::$cache->getCapabilities()->getSupportedDatatypes();
-        if (!array_key_exists('array', $supportedDataTypes) || !$supportedDataTypes['array']) {
-            throw new \UnexpectedValueException('Cache storage does not support array datatype');
+        if ( !array_key_exists( 'array', $supportedDataTypes ) || !$supportedDataTypes['array'] ) {
+            throw new \UnexpectedValueException( 'Cache storage does not support array datatype' );
         }
 
         $supportedMetadata = self::$cache->getCapabilities()->getSupportedMetadata();
-        if (!in_array('mtime', $supportedMetadata)) {
-            throw new \UnexpectedValueException('Cache storage does not support mtime metadata');
+        if ( !in_array( 'mtime', $supportedMetadata ) ) {
+            throw new \UnexpectedValueException( 'Cache storage does not support mtime metadata' );
         }
     }
 
@@ -100,26 +102,26 @@ class Library
      * @param int $mtime unix timestamp to compare the cache entry with (the entry will be ignored if older than $mtime)
      * @return mixed entry from cache or false if its key isn't found in cache or the entry is too old
      */
-    protected static function loadFromCache($key, $mtime = 0)
+    protected static function loadFromCache( $key, $mtime = 0 )
     {
         try {
             self::validateCache();
-        } catch (\Exception $exception) {
+        } catch ( \Exception $exception ) {
             // Fake an exception from getItem, so the cache's own EventManager can determine what to do with it
             $result = false;
-            return self::triggerCacheException('getItem', array('key' => &$key), $result, $exception);
+            return self::triggerCacheException( 'getItem', array( 'key' => &$key ), $result, $exception );
         }
 
-        if (!self::$cache->hasItem($key)) {
+        if ( !self::$cache->hasItem( $key ) ) {
             return false;
         }
 
-        $meta = self::$cache->getMetadata($key);
-        if (!array_key_exists('mtime', $meta) || $meta['mtime'] < $mtime) {
+        $meta = self::$cache->getMetadata( $key );
+        if ( !array_key_exists( 'mtime', $meta ) || $meta['mtime'] < $mtime ) {
             return false;
         }
 
-        return self::$cache->getItem($key);
+        return self::$cache->getItem( $key );
     }
 
     /**
@@ -128,17 +130,17 @@ class Library
      * @param string $key key used to store the entry in the cache (should match /^[a-z0-9_+-]*$/Di)
      * @param mixed $value entry to store in the cache
      */
-    protected static function storeInCache($key, &$value)
+    protected static function storeInCache( $key, &$value )
     {
         try {
             self::validateCache();
-        } catch (\Exception $exception) {
+        } catch ( \Exception $exception ) {
             // Fake an exception from setItem, so the cache's own EventManager can determine what to do with it
             $result = false;
-            return self::triggerCacheException('setItem', array('key' => &$key, 'value' => &$value), $result, $exception);
+            return self::triggerCacheException( 'setItem', array( 'key' => &$key, 'value' => &$value ), $result, $exception );
         }
 
-        return self::$cache->setItem($key, $value);
+        return self::$cache->setItem( $key, $value );
     }
 
     /**
@@ -152,24 +154,24 @@ class Library
      * @throws \Exception the original $exception, depending on the ExceptionEvent's 'ThrowException' value after being triggered at the EventManager
      * @see \Zend\Cache\Storage\Adapter\AbstractAdapter::triggerException()
      */
-    protected static function triggerCacheException($eventName, $args, &$result, \Exception $exception)
+    protected static function triggerCacheException( $eventName, $args, &$result, \Exception $exception )
     {
-        if (is_null(self::$cache)) {
+        if ( is_null( self::$cache ) ) {
             return $result;
         }
 
-        if (is_array($args)) {
-            $args = new \ArrayObject($args);
+        if ( is_array( $args ) ) {
+            $args = new \ArrayObject( $args );
         }
 
-        $exceptionEvent = new \Zend\Cache\Storage\ExceptionEvent($eventName . '.exception', self::$cache, $args, $result, $exception);
-        $responseCollection = self::$cache->getEventManager()->trigger($exceptionEvent);
+        $exceptionEvent = new \Zend\Cache\Storage\ExceptionEvent( $eventName . '.exception', self::$cache, $args, $result, $exception );
+        $responseCollection = self::$cache->getEventManager()->trigger( $exceptionEvent );
 
-        if ($exceptionEvent->getThrowException()) {
+        if ( $exceptionEvent->getThrowException() ) {
             throw $exceptionEvent->getException();
         }
 
-        if ($responseCollection->stopped()) {
+        if ( $responseCollection->stopped() ) {
             return $responseCollection->last();
         }
 
@@ -181,27 +183,27 @@ class Library
      *
      * @param string $path path to the .photolibrary directory (with or without trailing /)
      */
-    public function __construct($path)
+    public function __construct( $path )
     {
-        $path = rtrim($path, DIRECTORY_SEPARATOR);
+        $path = rtrim( $path, DIRECTORY_SEPARATOR );
         $plistPath = $path . DIRECTORY_SEPARATOR . 'AlbumData.xml';
-        
-        if (!is_dir($path) || !is_file($plistPath)) {
-            throw new \InvalidArgumentException('Given path does not seem to be an iPhoto library package');
+
+        if ( !is_dir( $path ) || !is_file( $plistPath ) ) {
+            throw new \InvalidArgumentException( 'Given path does not seem to be an iPhoto library package' );
         }
 
         // Since loading/parsing the plist can be quite heavy, caching was added here
-        $cacheKey = preg_replace('/[^A-Za-z0-9_+-]/', '--', realpath($path));
-        $data = self::loadFromCache($cacheKey, filemtime($plistPath));
-        if ($data === false) {
+        $cacheKey = preg_replace( '/[^A-Za-z0-9_+-]/', '--', realpath( $path ) );
+        $data = self::loadFromCache( $cacheKey, filemtime( $plistPath ) );
+        if ( $data === false ) {
             // These next 2 lines can take a while, depending on the size of the plist / your library
-            $plist = new \CFPropertyList\CFPropertyList($plistPath);
+            $plist = new \CFPropertyList\CFPropertyList( $plistPath );
             $data = $plist->toArray();
 
             // Get rid of this large data asap
-            unset($plist);
+            unset( $plist );
 
-            self::storeInCache($cacheKey, $data);
+            self::storeInCache( $cacheKey, $data );
         }
 
         $this->path = $path;
@@ -213,10 +215,10 @@ class Library
      */
     protected function ensureAlbums()
     {
-        if (is_null($this->albums)) {
+        if ( is_null( $this->albums ) ) {
             $this->albums = array();
-            foreach ($this->data['List of Albums'] as &$albumData) {
-                $album = new Album($this, $albumData);
+            foreach ( $this->data['List of Albums'] as &$albumData ) {
+                $album = new Album( $this, $albumData );
                 $this->albums[$album->getId()] = $album;
             }
         }
@@ -229,7 +231,7 @@ class Library
      */
     public function getAlbumCount()
     {
-        return count($this->data['List of Albums']);
+        return count( $this->data['List of Albums'] );
     }
 
     /**
@@ -240,7 +242,7 @@ class Library
     public function getAlbums()
     {
         $this->ensureAlbums();
-        return array_values($this->albums);
+        return array_values( $this->albums );
     }
 
     /**
@@ -249,12 +251,12 @@ class Library
      * @param string $type album type to look for, e.g. "Flagged", "Regular", "Event"
      * @return Album[] list of Album objects
      */
-    public function getAlbumsOfType($type)
+    public function getAlbumsOfType( $type )
     {
         $this->ensureAlbums();
         $albums = array();
-        foreach ($this->albums as $id => $album) {
-            if ($album->getType() == $type) {
+        foreach ( $this->albums as $id => $album ) {
+            if ( $album->getType() == $type ) {
                 $albums[] = $album;
             }
         }
@@ -267,10 +269,10 @@ class Library
      * @param int $id Album ID of the album to get
      * @return Album album with the given ID, or null iff not found
      */
-    public function getAlbum($id)
+    public function getAlbum( $id )
     {
         $this->ensureAlbums();
-        if (!array_key_exists($id, $this->albums)) {
+        if ( !array_key_exists( $id, $this->albums ) ) {
             return null;
         }
         return $this->albums[$id];
@@ -282,12 +284,12 @@ class Library
      * @param int $key key of the photo to get
      * @return Photo photo with the given key, or null iff not found
      */
-    public function getPhoto($key)
+    public function getPhoto( $key )
     {
-        if (!array_key_exists($key, $this->data['Master Image List'])) {
+        if ( !array_key_exists( $key, $this->data['Master Image List'] ) ) {
             return null;
         }
-        return new Photo($this, $key, $this->data['Master Image List'][$key]);
+        return new Photo( $this, $key, $this->data['Master Image List'][$key] );
     }
 
     /**
@@ -296,11 +298,11 @@ class Library
      * @param string $path path to a file from the AlbumData.xml plist
      * @return string rewritten path to the real file (of the current .photolibrary)
      */
-    public function rewritePath($path)
+    public function rewritePath( $path )
     {
-        $archivePath = dirname($this->data['Archive Path']);
-        $realPath = dirname($this->path);
-        return preg_replace('/^' . preg_quote($archivePath, '/') . '/', $realPath, $path);
+        $archivePath = dirname( $this->data['Archive Path'] );
+        $realPath = dirname( $this->path );
+        return preg_replace( '/^' . preg_quote( $archivePath, '/' ) . '/', $realPath, $path );
     }
 
     /**
@@ -309,29 +311,31 @@ class Library
      * @param int $face_key
      * @return string The face name.
      */
-    public function getFaceName($faceKey)
+    public function getFaceName( $faceKey )
     {
-        if (is_null($this->faceDb)) {
-            $possibleFaceDbLocations = array('Database' . DIRECTORY_SEPARATOR . 'apdb' . DIRECTORY_SEPARATOR . 'Faces.db', 'Database' . DIRECTORY_SEPARATOR . 'Faces.db' );
+        if ( is_null( $this->faceDb ) ) {
+            $possibleFaceDbLocations = array( 'Database' . DIRECTORY_SEPARATOR . 'apdb' . DIRECTORY_SEPARATOR . 'Faces.db', 'Database' . DIRECTORY_SEPARATOR . 'Faces.db' );
 
-            foreach ($possibleFaceDbLocations as $faceDbPath) {
+            foreach ( $possibleFaceDbLocations as $faceDbPath ) {
                 try {
-                    $this->faceDb = new \PDO('sqlite:' . $this->path . DIRECTORY_SEPARATOR . $faceDbPath);
-                } catch (Exception $e) {
+                    $this->faceDb = new \PDO( 'sqlite:' . $this->path . DIRECTORY_SEPARATOR . $faceDbPath );
+                } catch ( Exception $e ) {
+                    
                 }
 
-                if ($this->faceDb) {
+                if ( $this->faceDb ) {
                     break;
                 }
             }
         }
 
-        if (!$this->faceDb) {
+        if ( !$this->faceDb ) {
             return '';
         }
 
-        $statement = $this->faceDb->prepare('SELECT name FROM RKFaceName WHERE faceKey = ?');
-        $statement->execute(array($faceKey));
+        $statement = $this->faceDb->prepare( 'SELECT name FROM RKFaceName WHERE faceKey = ?' );
+        $statement->execute( array( $faceKey ) );
         return $statement->fetchColumn();
     }
+
 }

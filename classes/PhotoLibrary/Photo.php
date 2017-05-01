@@ -1,4 +1,5 @@
 <?php
+
 namespace PhotoLibrary;
 
 /**
@@ -10,6 +11,7 @@ namespace PhotoLibrary;
  */
 class Photo
 {
+
     /**
      * Link back to the library to which this photo belongs
      *
@@ -39,7 +41,7 @@ class Photo
      * @param array $data assiciative array with raw photo properties
      * @see Library::getPhoto()
      */
-    public function __construct(Library $library, $key, $data)
+    public function __construct( Library $library, $key, $data )
     {
         $this->library = $library;
         $this->key = $key;
@@ -83,7 +85,7 @@ class Photo
      */
     public function getPath()
     {
-        return $this->library->rewritePath($this->data['ImagePath']);
+        return $this->library->rewritePath( $this->data['ImagePath'] );
     }
 
     /**
@@ -93,7 +95,7 @@ class Photo
      */
     public function getThumbnailPath()
     {
-        return $this->library->rewritePath($this->data['ThumbPath']);
+        return $this->library->rewritePath( $this->data['ThumbPath'] );
     }
 
     /**
@@ -112,13 +114,13 @@ class Photo
      * @param string $format The date formatting string.
      * @return string The photo date.
      */
-    public function getDateTime($format = "Y-m-d H:i:s")
+    public function getDateTime( $format = "Y-m-d H:i:s" )
     {
         // iPhoto stores timestamps as offsets from 2001-01-01 00:00:00.
         // gmmktime( 0, 0, 0, 1, 1, 2001 ) = 978307200
         $IPHOTO_EPOCH = 978307200;
 
-        return new \DateTime('@' . ($IPHOTO_EPOCH + intval($this->data['DateAsTimerInterval'])));
+        return new \DateTime( '@' . ($IPHOTO_EPOCH + intval( $this->data['DateAsTimerInterval'] )) );
     }
 
     /**
@@ -130,12 +132,13 @@ class Photo
     {
         $faces = array();
 
-        if (!empty($this->data['Faces'])) {
-            foreach ($this->data['Faces'] as $faceEntry) {
-                $faces[] = new Face($this->library, $faceEntry['face key'], $faceEntry['rectangle']);
+        if ( !empty( $this->data['Faces'] ) ) {
+            foreach ( $this->data['Faces'] as $faceEntry ) {
+                $faces[] = new Face( $this->library, $faceEntry['face key'], $faceEntry['rectangle'] );
             }
         }
 
         return $faces;
     }
+
 }

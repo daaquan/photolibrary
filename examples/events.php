@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Lists all events in your iPhoto library, together with the number of photos, sorted alphabetically
  *
@@ -8,21 +9,20 @@
  * @copyright 2013 Robbert Klarenbeek
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 // Change this if you're not using Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Default to OS X default iPhoto library
 $libraryPath = ($argc >= 2) ? $argv[1] : $_SERVER['HOME'] . '/Pictures/iPhoto Library.photolibrary';
 
-$library = new \PhotoLibrary\Library($libraryPath);
+$library = new \PhotoLibrary\Library( $libraryPath );
 
 $events = array();
-foreach ($library->getAlbumsOfType('Event') as $album) {
+foreach ( $library->getAlbumsOfType( 'Event' ) as $album ) {
     $events[$album->getName()] = $album->getPhotoCount();
 }
 
-ksort($events);
-foreach ($events as $eventName => $photoCount) {
+ksort( $events );
+foreach ( $events as $eventName => $photoCount ) {
     echo $eventName . ' (' . $photoCount . ' photos)' . PHP_EOL;
 }
